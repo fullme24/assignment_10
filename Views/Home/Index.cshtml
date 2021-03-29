@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<!--
+    This main, index page is set up to list off the contact info of all the bowlers.
+    It will have pagenation near the bottom so that the user can cycle through all the
+    records. Furthermore, to the side, the user will be able to select particular
+    teams
+-->
+
+@model IEnumerable<assignment_10.Models.Bowlers>
+
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <strong>Last Name</strong>
+            </th>
+            <th>
+                <strong>Middle Initial</strong>
+            </th>
+            <th>
+                <strong>First Name</strong>
+            </th>
+            <th>
+                <strong>Address</strong>
+            </th>
+            <th>
+                <strong>Phone Number</strong>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BowlerLastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BowlerMiddleInit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BowlerFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BowlerAddress), @Html.DisplayFor(modelItem => item.BowlerCity), @Html.DisplayFor(modelItem => item.BowlerState) @Html.DisplayFor(modelItem => item.BowlerZip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BowlerPhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Team.TeamName)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
