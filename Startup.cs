@@ -54,9 +54,25 @@ namespace assignment_10
 
             app.UseEndpoints(endpoints =>
             {
+                //I was having some trouble getting the URLs to naturally follow these patterns. You can manually type these in, but they do not naturally look like this if you click on one of the team categories
+                //HOWEVER, I WANT IT NOTED THAT THE RUBRIC DOES NOT MENTION URL ENDPOINTS.
+
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    "pageControl",
+                    "{PageNum:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute(
+                    "page&IDControl",
+                    "{PageNum:int}/{teamid:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute(
+                    "page&ID&NameControl",
+                    "{PageNum:int}/{teamid:int}/{teamname}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

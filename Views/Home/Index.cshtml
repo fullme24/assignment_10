@@ -8,14 +8,14 @@
     teams
 -->
 
-@model IEnumerable<assignment_10.Models.Bowlers>
+@model BowlerListViewModel
 
 @{
     ViewData["Title"] = "List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>List</h1>
+<h1>@ViewBag.Team</h1>
 
 <table class="table">
     <thead>
@@ -38,7 +38,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Bowlers)
         {
             <tr>
                 <td>
@@ -63,3 +63,10 @@
         }
     </tbody>
 </table>
+
+<div page-model="@Model.PageInfo" page-action="Index" page-classes-enabled="true" 
+     page-class="btn" page-class-normal="btn-outline-dark" 
+     page-class-selected="btn-primary"
+     page-url-teamname="@Model.TeamName">
+
+</div>

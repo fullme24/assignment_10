@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    /*
+        This is setting up the list of teams to the side that the user can use to filter the data
+    */
+}
+
+@model IEnumerable<Teams>
+
+<div>
+    <h2>
+        Teams
+    </h2>
+    <!--
+        This part of code will help to highlight the current team
+    -->
+    @foreach (Teams b in Model)
+    {
+        if (b.TeamName != ViewBag.Team)
+        {
+            <a asp-action="Index" asp-controller="Home"
+               asp-route-teamid="@b.TeamId" asp-route-teamname="@b.TeamName"
+               asp-route-pageNum="1">
+                @b.TeamName
+            </a>
+        }
+        else
+        {
+            <a asp-action="Index" asp-controller="Home"
+               asp-route-teamid="@b.TeamId" asp-route-teamname="@b.TeamName"
+               asp-route-pageNum="1" class="text-dark lead">
+                @b.TeamName
+            </a>
+        }
+
+    }
+</div>
